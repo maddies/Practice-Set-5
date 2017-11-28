@@ -1,10 +1,15 @@
 package pkgLibrary;
 
+import java.util.ArrayList;
+
 import java.util.Date;
+import java.util.UUID;
 
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
+
+import pkgException.BookException;
 
 public class Book {
 
@@ -15,12 +20,13 @@ public class Book {
 	private double price;
 	private Date publish_date;
 	private String description;
-
+	private double cost;
+	
 	public Book() {
-
+		//this.id = "";
 	}
 
-	public Book(String id, String author, String title, String genre, double price, Date publish_date, String description)
+	public Book(String id, String author, String title, String genre, double price, double cost, Date publish_date, String description)
 	{
 		super();
 		this.id = id;
@@ -28,11 +34,25 @@ public class Book {
 		this.title = title;
 		this.genre = genre;		
 		this.price = price;
+		this.cost = cost;
 		this.publish_date = publish_date;
 		this.description = description;
 	}
 	
- 
+	public Book(String bid) throws BookException
+	{
+		Catalog c = new Catalog();
+		Book b = c.GetBook(bid);
+		this.id = b.id;
+		this.author = b.author;
+		this.title = b.title;
+		this.genre = b.genre;		
+		this.price = b.price;
+		this.cost = b.cost;
+		this.publish_date = b.publish_date;
+		this.description = b.description;
+		
+	}
 
 	public String getId() {
 		return id;
@@ -75,6 +95,16 @@ public class Book {
 	}
 
 	@XmlElement
+	public void setCost(double cost) {
+		this.cost = cost;
+	}
+
+	public double getCost() {
+		return cost;
+	}
+	
+
+	@XmlElement
 	public void setPrice(double price) {
 		this.price = price;
 	}
@@ -96,8 +126,6 @@ public class Book {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-
-	
 	
 
 }

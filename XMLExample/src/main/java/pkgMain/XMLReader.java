@@ -28,7 +28,20 @@ public class XMLReader {
 	}
 
 
+	public XMLReader()
+	{
+		
+	}
 	
+	public Catalog rdCat()
+	{
+		return ReadCatalog();
+	}
+	
+	public void wrtXML(Catalog cat)
+	{
+		WriteXMLFile(cat);
+	}
 	
 	private static Catalog ReadCatalog() {
 		Catalog cat = ReadXMLFile();
@@ -38,6 +51,8 @@ public class XMLReader {
 
 		return cat;		
 	}
+
+
 
 	private static Catalog IncreasePrice(Catalog cat, double PriceIncrease)
 	{
@@ -49,11 +64,14 @@ public class XMLReader {
 		return cat;
 	}
 	
+
+	
 	private static void WriteXMLFile(Catalog cat) {
 		try {
 
 			String basePath = new File("").getAbsolutePath();
-			basePath = basePath + "\\src\\main\\resources\\XMLFiles\\Books.xml";
+			basePath = "//Users//madeline//git//XMLExample//XMLExample//src//main//resources//XMLFiles//Books.xml";
+			//basePath = basePath + "\\src\\main\\resources\\XMLFiles\\Books.xml";
 			File file = new File(basePath);
 
 			JAXBContext jaxbContext = JAXBContext.newInstance(Catalog.class);
@@ -75,7 +93,8 @@ public class XMLReader {
 		Catalog cat = null;
 
 		String basePath = new File("").getAbsolutePath();
-		basePath = basePath + "\\src\\main\\resources\\XMLFiles\\Books.xml";
+		//basePath = basePath + "\\src\\main\\resources\\XMLFiles\\Books.xml";
+		basePath = "//Users//madeline//git//XMLExample//XMLExample//src//main//resources//XMLFiles//Books.xml";
 		File file = new File(basePath);
 
 		System.out.println(file.getAbsolutePath());
